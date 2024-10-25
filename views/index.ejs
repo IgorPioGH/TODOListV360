@@ -12,7 +12,7 @@
 
         <!-- Formulário para adicionar um novo usuário -->
         <form action="/addUser" method="POST" class="add-user-form">
-            <input type="text" name="nome" placeholder="Novo Usuário" required>
+            <input type="text" name="nome" placeholder="Nome do novo usuário" required>
             <button type="submit">Adicionar Usuário</button>
         </form>
 
@@ -32,7 +32,7 @@
             <!-- Formulário para criar uma nova lista -->
             <form action="/addList" method="POST" class="add-list-form">
                 <input type="hidden" name="usuarioAtual" value="<%= usuarioAtual %>">
-                <input type="text" name="nomeLista" placeholder="Nova Lista" required>
+                <input type="text" name="nomeLista" placeholder="Nome da nova lista" required>
                 <button type="submit">Criar Nova Lista</button>
             </form>
 
@@ -50,23 +50,19 @@
                         <ul>
                             <% lista.tarefas.forEach(tarefa => { %>
                                 <li>
-                                    <% if (tarefa.status) { %>
-                                        <!-- Formulário para concluir tarefa -->
-                                        <form action="/concluirTarefa" method="POST" style="display: inline;">
-                                            <input type="hidden" name="id_tarefa" value="<%= tarefa.id_tarefa %>">
-                                            <input type="hidden" name="usuarioAtualId" value="<%= usuarioAtual %>">
-                                            <input type="checkbox" onChange="this.form.submit()"> <!-- Marca a tarefa como concluída -->
-                                            <%= tarefa.descricao %>
-                                        </form>
-                                    <% } else { %>
-                                        <!-- Formulário para reabrir tarefa -->
-                                        <form action="/reabrirTarefa" method="POST" style="display: inline;">
-                                            <input type="hidden" name="id_tarefa" value="<%= tarefa.id_tarefa %>">
-                                            <input type="hidden" name="usuarioAtualId" value="<%= usuarioAtual %>">
-                                            <input type="checkbox" checked onChange="this.form.submit()"> <!-- Reabre a tarefa -->
-                                            <%= tarefa.descricao %>
-                                        </form>
-                                    <% } %>
+                                    <!-- Formulário para atualizar a descrição da tarefa -->
+                                    <form action="/atualizarTarefa" method="POST" style="flex-grow: 1;">
+                                        <input type="hidden" name="id_tarefa" value="<%= tarefa.id_tarefa %>">
+                                        <input type="hidden" name="usuarioAtualId" value="<%= usuarioAtual %>">
+                                        <textarea name="novaDescricao" onblur="this.form.submit()" style="border: none; background: none; color: inherit; font: inherit; width: 100%; resize: none;"><%= tarefa.descricao %></textarea>
+                                    </form>
+
+                                    <!-- Formulário para concluir ou reabrir tarefa -->
+                                    <form action="<%= tarefa.status ? '/concluirTarefa' : '/reabrirTarefa' %>" method="POST" class="checkbox-form" style="margin-left: 10px;">
+                                        <input type="hidden" name="id_tarefa" value="<%= tarefa.id_tarefa %>">
+                                        <input type="hidden" name="usuarioAtualId" value="<%= usuarioAtual %>">
+                                        <input type="checkbox" <%= tarefa.status ? "" : "checked" %> onChange="this.form.submit()">
+                                    </form>
                                 </li>
                             <% }) %>
                         </ul>
@@ -75,7 +71,7 @@
                         <form action="/addTask" method="POST">
                             <input type="hidden" name="id_lista" value="<%= lista.id_lista %>">
                             <input type="hidden" name="usuarioAtualId" value="<%= usuarioAtual %>">
-                            <input type="text" name="descricao" placeholder="Descrição da Nova Tarefa" required>
+                            <input type="text" name="descricao" placeholder="Descrição da nova tarefa" required>
                             <button type="submit">Adicionar Tarefa</button>
                         </form>
                     </div>

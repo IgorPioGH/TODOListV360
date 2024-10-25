@@ -136,8 +136,28 @@ li {
     border-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* Move o checkbox para a extremidade direita */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra leve nas tarefas */
+    word-wrap: break-word; /* Permite que o texto longo quebre para a próxima linha */
+}
+
+/* Ajusta o textarea para a descrição */
+li form textarea {
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    width: 85%; /* Descrição ocupa 85% do espaço disponível */
+    padding: 5px 0;
+    resize: none; /* Impede redimensionamento manual */
+    overflow: visible;
+    white-space: normal; /* Permite quebra de linha do texto */
+    word-wrap: break-word; /* Permite que o texto longo quebre para a próxima linha */
+}
+
+/* Formulário do checkbox */
+li form.checkbox-form {
+    width: auto; /* Mantém o checkbox pequeno e à direita */
 }
 
 /* Formulário para adicionar nova tarefa */

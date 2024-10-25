@@ -87,6 +87,11 @@ async function reabrirTarefa(id_tarefa) {
     await db.query(`UPDATE tarefas SET status = true WHERE id_tarefa = $1`, [id_tarefa]);
 }
 
+// Função para atualizar a descrição de uma tarefa específica
+async function atualizarDescricaoTarefa(id_tarefa, novaDescricao) {
+    await db.query(`UPDATE tarefas SET descricao = $1 WHERE id_tarefa = $2`, [novaDescricao, id_tarefa]);
+}
+
 // Rota inicial para exibir os botões dos usuários
 app.get("/", async (req, res) => {
     const usuarios = await getUsuarios();
@@ -172,6 +177,13 @@ app.post("/addList", async (req, res) => {
     const { usuarioAtual, nomeLista } = req.body;
     await criarLista(usuarioAtual, nomeLista);
     res.redirect(`/usuario/${usuarioAtual}`);
+});
+
+// Rota para atualizar a descrição de uma tarefa
+app.post("/atualizarTarefa", async (req, res) => {
+    const { id_tarefa, novaDescricao, usuarioAtualId } = req.body;
+    await atualizarDescricaoTarefa(id_tarefa, novaDescricao);
+    res.redirect(`/usuario/${usuarioAtualId}`);
 });
 
 app.listen(port, () => {
