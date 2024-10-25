@@ -1,0 +1,169 @@
+/* Fundo geral */
+body {
+    background-color: #391b54;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Título */
+h1 {
+    color: #e2e23f;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no texto amarelo */
+}
+
+/* Formulário para adicionar novo usuário */
+.add-user-form {
+    margin-bottom: 20px;
+}
+
+.add-user-form input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+    width: 60%;
+}
+
+.add-user-form button {
+    background-color: #ec5815;
+    color: #ffffff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-user-form button:hover {
+    background-color: #e2e23f;
+}
+
+/* Botões de seleção de usuário */
+.user-buttons {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 20px;
+    top: 100px;
+    width: 150px; /* Tamanho fixo para manter a largura */
+}
+
+.user-buttons form {
+    margin-bottom: 5px;
+}
+
+.user-button {
+    background-color: #592a9e;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Sombra leve para o botão de usuário */
+    width: 100%; /* Usar a largura total do contêiner */
+    text-align: center;
+}
+
+.user-button:hover {
+    background-color: #ec5815;
+}
+
+/* Blocos de listas */
+.lista {
+    background-color: #592a9e;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); /* Sombra direita e embaixo para destaque */
+}
+
+.lista h3 {
+    color: #e2e23f;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no título da lista */
+}
+
+/* Formulário para criar nova lista */
+.add-list-form {
+    margin-top: 10px;
+    margin-bottom: 20px; /* Espaço entre o form e o primeiro bloco de lista */
+}
+
+/* Botão para ver tarefas concluídas */
+button[type="submit"] {
+    background-color: #ec5815;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Sombra no botão */
+}
+
+button[type="submit"]:hover {
+    background-color: #e2e23f;
+}
+
+/* Lista de tarefas */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #ffffff;
+    color: #592a9e;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra leve nas tarefas */
+}
+
+/* Formulário para adicionar nova tarefa */
+form[action="/addTask"] {
+    display: flex;
+    justify-content: center;
+}
+
+form[action="/addTask"] input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+    width: 70%;
+}
+
+form[action="/addTask"] button {
+    background-color: #ec5815;
+    color: #ffffff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Sombra nos botões de adição */
+}
+
+form[action="/addTask"] button:hover {
+    background-color: #e2e23f;
+}

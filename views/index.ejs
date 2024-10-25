@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO DO LIST</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
     <div class="container">
@@ -12,7 +12,7 @@
 
         <!-- Formulário para adicionar um novo usuário -->
         <form action="/addUser" method="POST" class="add-user-form">
-            <input type="text" name="nome" placeholder="Nome do novo usuário" required>
+            <input type="text" name="nome" placeholder="Novo Usuário" required>
             <button type="submit">Adicionar Usuário</button>
         </form>
 
@@ -28,14 +28,46 @@
         <!-- Exibir listas de tarefas do usuário selecionado -->
         <% if (listas) { %>
             <h2>Listas de Tarefas de <%= usuarioAtualNome %></h2>
+
+            <!-- Formulário para criar uma nova lista -->
+            <form action="/addList" method="POST" class="add-list-form">
+                <input type="hidden" name="usuarioAtual" value="<%= usuarioAtual %>">
+                <input type="text" name="nomeLista" placeholder="Nova Lista" required>
+                <button type="submit">Criar Nova Lista</button>
+            </form>
+
             <div>
                 <% listas.forEach(lista => { %>
                     <div class="lista">
                         <!-- Nome da lista como título -->
                         <h3><%= lista.nome %></h3>
+
+                        <!-- Botão para ver tarefas concluídas -->
+                        <form action="/verConcluidas/<%= lista.id_lista %>/<%= usuarioAtual %>" method="get" style="display: inline;">
+                            <button type="submit">Ver Concluídas</button>
+                        </form>
+
                         <ul>
                             <% lista.tarefas.forEach(tarefa => { %>
-                                <li><%= tarefa.descricao %></li>
+                                <li>
+                                    <% if (tarefa.status) { %>
+                                        <!-- Formulário para concluir tarefa -->
+                                        <form action="/concluirTarefa" method="POST" style="display: inline;">
+                                            <input type="hidden" name="id_tarefa" value="<%= tarefa.id_tarefa %>">
+                                            <input type="hidden" name="usuarioAtualId" value="<%= usuarioAtual %>">
+                                            <input type="checkbox" onChange="this.form.submit()"> <!-- Marca a tarefa como concluída -->
+                                            <%= tarefa.descricao %>
+                                        </form>
+                                    <% } else { %>
+                                        <!-- Formulário para reabrir tarefa -->
+                                        <form action="/reabrirTarefa" method="POST" style="display: inline;">
+                                            <input type="hidden" name="id_tarefa" value="<%= tarefa.id_tarefa %>">
+                                            <input type="hidden" name="usuarioAtualId" value="<%= usuarioAtual %>">
+                                            <input type="checkbox" checked onChange="this.form.submit()"> <!-- Reabre a tarefa -->
+                                            <%= tarefa.descricao %>
+                                        </form>
+                                    <% } %>
+                                </li>
                             <% }) %>
                         </ul>
 
@@ -43,7 +75,7 @@
                         <form action="/addTask" method="POST">
                             <input type="hidden" name="id_lista" value="<%= lista.id_lista %>">
                             <input type="hidden" name="usuarioAtualId" value="<%= usuarioAtual %>">
-                            <input type="text" name="descricao" placeholder="Descrição da nova tarefa" required>
+                            <input type="text" name="descricao" placeholder="Descrição da Nova Tarefa" required>
                             <button type="submit">Adicionar Tarefa</button>
                         </form>
                     </div>
