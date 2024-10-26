@@ -6,7 +6,6 @@
 - O usuário deve ser capaz de adicionar uma tarefa a uma lista;
 - O usuário deve ser capaz de editar uma tarefa;
 - O usuário deve ser capaz de marcar uma tarefa como concluída;
-- O usuário deve ser capaz de deletar uma tarefa que não precisa mais;
 - O usuário pode ter mais de uma lista de tarefas;
 - O usuário pode dar nomes as listas;
 - O usuário pode filtrar as tarefas entre concluídas/não concluídas
